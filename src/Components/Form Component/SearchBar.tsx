@@ -1,7 +1,11 @@
 import React from "react";
 import { useState } from "react";
 
-export function SearchBar() {
+interface Props {
+  setLocation: (text: string) => void;
+}
+
+export function SearchBar({ setLocation }: Props) {
   const [search, setSearch] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -10,6 +14,7 @@ export function SearchBar() {
 
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
+    setLocation(search);
   };
 
   return (
