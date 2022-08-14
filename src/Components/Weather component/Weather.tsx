@@ -3,9 +3,9 @@ import React from "react";
 export function Weather() {
   return (
     <div>
-      <p className="text-3xl font-bold underline">Monday</p>
-      <p>Temperature</p> <p>Humidity</p>
-      <p>Cloudy</p>
+      <p className="">Monday</p>
+      <p className="">Temperature</p> <p className="">Humidity</p>
+      <p className="">Cloudy</p>
     </div>
   );
 }

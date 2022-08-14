@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import "./SearchBar.css";
 
 type Props = {
   setLocation: (text: string) => void;
@@ -21,7 +22,12 @@ export function SearchBar({ setLocation }: Props) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <input type="text" onChange={handleChange} value={search} />
+        <input
+          className="outline outline-2 outline-gray-300 rounded-md"
+          type="text"
+          onChange={handleChange}
+          value={search}
+        />
       </form>
     </div>
   );
