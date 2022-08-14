@@ -1,9 +1,10 @@
 import React from "react";
 import { useState } from "react";
 
-interface Props {
+type Props = {
   setLocation: (text: string) => void;
-}
+  className: string;
+};
 
 export function SearchBar({ setLocation }: Props) {
   const [search, setSearch] = useState("");

@@ -6,7 +6,6 @@ const getData = async () => {
     if (!response.ok) {
       throw new Error(`HTTP error: ${response.status}`);
     }
-
     const jsonResponse = await response.json();
     console.log(jsonResponse);
   } catch (error) {
