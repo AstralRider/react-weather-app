@@ -18,10 +18,10 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="relative  min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
       {userLocation}
       <SearchBar className="searchbar" setLocation={setLocation} />
-      <Weather />
+      {/* <Weather /> */}
     </div>
   );
 }
