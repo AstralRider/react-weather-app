@@ -18,7 +18,7 @@ function App() {
   };
 
   return (
-    <div className="container flex mx-auto min-h-screen justify-center">
+    <div className="container flex flex-col mx-auto min-h-screen justify-center ">
       <SearchBar className="searchbar" setLocation={setLocation} />
       <Weather />
     </div>

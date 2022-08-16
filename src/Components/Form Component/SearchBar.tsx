@@ -20,10 +20,10 @@ export function SearchBar({ setLocation }: Props) {
   };
 
   return (
-    <div className="relative flex flex-col justify-center max-h-96">
+    <div className="relative flex justify-center max-h-96 mb-20">
       <form
         onSubmit={handleSubmit}
-        className="container max-h-40 flex flex-col justify-center"
+        className="container max-h-40 flex justify-center "
       >
         <input
           className="outline outline-2 outline-gray-300 rounded-md w-80 h-10 min-w-min text-3xl"
