@@ -2,10 +2,10 @@ import React from "react";
 import { useState } from "react";
 import "./SearchBar.css";
 
-type Props = {
+interface Props {
   setLocation: (text: string) => void;
   className: string;
-};
+}
 
 export function SearchBar({ setLocation }: Props) {
   const [search, setSearch] = useState("");
