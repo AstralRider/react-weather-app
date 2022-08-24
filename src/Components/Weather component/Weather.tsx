@@ -1,5 +1,10 @@
 import React from "react";
 
+interface Props {
+  temp: number;
+  description: string;
+}
+
 const weatherObj = {
   Thunderstorm: "/Assets/lightning.png",
   Drizzle: "/Assets/rain.png",
@@ -18,7 +23,7 @@ const weatherObj = {
   Tornado: "/Assets/wind.png",
 };
 
-export function Weather() {
+export function Weather({ temp, description }: Props) {
   return (
     <div className="container flex justify-center max-w-2xl mx-auto ">
       <div className="flex flex-col rounded shadow-xl outline outline-1 outline-gray-200 px-8 py-4 transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-105">

@@ -19,7 +19,7 @@ function App() {
           throw new Error(`HTTP error: ${response.status}`);
         }
         const jsonResponse = await response.json();
-        setData(jsonResponse);
+        console.log(jsonResponse);
       } catch (error) {
         console.log(error);
       }
@@ -34,7 +34,7 @@ function App() {
   return (
     <div className="container flex flex-col mx-auto min-h-screen justify-center ">
       <SearchBar className="searchbar" setLocation={setLocation} />
-      <Weather />
+      <Weather temp={40} description={"Rain"} />
     </div>
   );
 }
