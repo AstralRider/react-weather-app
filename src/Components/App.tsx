@@ -34,7 +34,7 @@ function App() {
   return (
     <div className="container flex flex-col mx-auto min-h-screen justify-center ">
       <SearchBar className="searchbar" setLocation={setLocation} />
-      <Weather temp={40} description={"Rain"} />
+      <Weather temp={40} description={"Rain"} date={1661342400} />
     </div>
   );
 }
