@@ -6,7 +6,7 @@ import { Weather } from "./Weather component/Weather";
 import "./App.css";
 
 function App() {
-  const [userLocation, setUserLocation] = useState<string | null>("");
+  const [userLocation, setUserLocation] = useState<string | null>(null);
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -19,13 +19,13 @@ function App() {
           throw new Error(`HTTP error: ${response.status}`);
         }
         const jsonResponse = await response.json();
-        console.log(jsonResponse);
+        setData(jsonResponse);
       } catch (error) {
         console.log(error);
       }
     };
     getData();
-  }, []);
+  }, [userLocation]);
 
   const setLocation = (input: string) => {
     setUserLocation(input);
@@ -34,7 +34,7 @@ function App() {
   return (
     <div className="container flex flex-col mx-auto min-h-screen justify-center ">
       <SearchBar className="searchbar" setLocation={setLocation} />
-      <Weather temp={40} description={"Rain"} date={1661342400} />
+      <Weather data={data} />
     </div>
   );
 }
