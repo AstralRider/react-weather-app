@@ -1,13 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { SearchBar } from "./Form Component/SearchBar";
-//import getData from "../utils/util";
 import { Weather } from "./Weather component/Weather";
 import "./App.css";
 
 function App() {
   const [userLocation, setUserLocation] = useState<string | null>(null);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
 
   useEffect(() => {
     const getData = async () => {
@@ -24,7 +23,7 @@ function App() {
         console.log(error);
       }
     };
-    getData();
+    (async () => await getData())();
   }, [userLocation]);
 
   const setLocation = (input: string) => {
@@ -34,7 +33,8 @@ function App() {
   return (
     <div className="container flex flex-col mx-auto min-h-screen justify-center ">
       <SearchBar className="searchbar" setLocation={setLocation} />
-      <Weather data={data} />
+
+      <Weather info={data} />
     </div>
   );
 }
