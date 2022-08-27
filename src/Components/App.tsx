@@ -7,6 +7,7 @@ import { WeatherData } from "./Weather component/Weather";
 
 function App() {
   const [userLocation, setUserLocation] = useState<string | null>(null);
+
   const [data, setData] = useState<WeatherData>();
 
   useEffect(() => {

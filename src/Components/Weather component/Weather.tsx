@@ -44,6 +44,7 @@ export function Weather({ info }: WeatherDataProps) {
         </div>
         <div className="">
           <p className="text-gray-500">Monday</p>
+
           {/* Important to check that info != null, otherwise errors are thrown */}
           {info &&
             info.list.map((x) => <p className="">Temp: {x.main.temp}</p>)}
