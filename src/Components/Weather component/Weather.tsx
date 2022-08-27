@@ -1,7 +1,20 @@
 import React from "react";
 
-interface WeatherProps {
-  data: string | number[];
+interface WeatherDataProps {
+  info: WeatherData;
+}
+
+export interface WeatherData {
+  cnt: number;
+  list: Forecast[];
+}
+
+interface Forecast {
+  temp: number;
+  dt: number;
+  main: {
+    temp: number;
+  };
 }
 
 const weatherObj = {
@@ -22,7 +35,7 @@ const weatherObj = {
   Tornado: "/Assets/wind.png",
 };
 
-export function Weather({ data }: WeatherProps) {
+export function Weather({ info }: WeatherDataProps) {
   return (
     <div className="container flex justify-center max-w-2xl mx-auto ">
       <div className="flex flex-col rounded shadow-xl outline outline-1 outline-gray-200 px-8 py-4 transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-105">
@@ -31,7 +44,9 @@ export function Weather({ data }: WeatherProps) {
         </div>
         <div className="">
           <p className="text-gray-500">Monday</p>
-          <p className="text-gray-500">Temp:</p>
+          {/* Important to check that info != null, otherwise errors are thrown */}
+          {info &&
+            info.list.map((x) => <p className="">Temp: {x.main.temp}</p>)}
         </div>
       </div>
     </div>
