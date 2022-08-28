@@ -1,6 +1,6 @@
 import React from "react";
 
-interface WeatherDataProps {
+export interface WeatherDataProps {
   info: WeatherData;
 }
 
@@ -9,7 +9,7 @@ export interface WeatherData {
   list: Forecast[];
 }
 
-interface Forecast {
+export interface Forecast {
   temp: number;
   dt: number;
   main: {
