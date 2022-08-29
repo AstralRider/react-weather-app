@@ -1,7 +1,7 @@
 import React from "react";
 
 export interface WeatherDataProps {
-  info: WeatherData;
+  info?: WeatherData;
 }
 
 export interface WeatherData {
@@ -11,7 +11,7 @@ export interface WeatherData {
 
 export interface Forecast {
   temp: number;
-  dt: number;
+  dt_txt: string;
   main: {
     temp: number;
   };
@@ -38,18 +38,20 @@ const weatherObj = {
 export function Weather({ info }: WeatherDataProps) {
   return (
     <div className="container flex justify-center max-w-2xl mx-auto ">
-      <div className="flex flex-col rounded shadow-xl outline outline-1 outline-gray-200 px-8 py-4 transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-105">
-        <div className=" w-16 h-16 flex self-center">
-          <img className="" src="" alt="" />
-        </div>
-        <div className="">
-          <p className="text-gray-500">Monday</p>
-
-          {/* Important to check that info != null, otherwise errors are thrown */}
-          {info &&
-            info.list.map((x) => <p className="">Temp: {x.main.temp}</p>)}
-        </div>
-      </div>
+      {info &&
+        info.list
+          .filter((x) => x.dt_txt.slice(11, 19) === "09:00:00")
+          .map((x) => (
+            <div className="flex flex-col rounded shadow-xl outline outline-1 outline-gray-200 px-8 py-4 transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-105">
+              <div className=" w-16 h-16 flex self-center">
+                <img className="" src="" alt="" />
+              </div>
+              <div className="">
+                <p className="text-gray-500">Monday</p>
+                <p className="">Temp: {x.main.temp} </p>
+              </div>
+            </div>
+          ))}
     </div>
   );
 }
