@@ -12,6 +12,7 @@ export interface WeatherData {
 export interface Forecast {
   temp: number;
   dt_txt: string;
+  dt: number;
   main: {
     temp: number;
   };
@@ -36,6 +37,12 @@ const weatherObj = {
 };
 
 export function Weather({ info }: WeatherDataProps) {
+  const getDay = (time: number) => {
+    const ms = time * 1000;
+    const dateObject = new Date(ms);
+    return dateObject.toLocaleString("en-US", { weekday: "long" });
+  };
+
   return (
     <div className="container flex justify-center max-w-2xl mx-auto ">
       {info &&
@@ -47,7 +54,7 @@ export function Weather({ info }: WeatherDataProps) {
                 <img className="" src="" alt="" />
               </div>
               <div className="">
-                <p className="text-gray-500">Monday</p>
+                <p className="text-gray-500">{getDay(x.dt)}</p>
                 <p className="">Temp: {x.main.temp} </p>
               </div>
             </div>
