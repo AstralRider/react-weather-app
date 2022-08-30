@@ -43,6 +43,10 @@ export function Weather({ info }: WeatherDataProps) {
     return dateObject.toLocaleString("en-US", { weekday: "long" });
   };
 
+  const getIcon = (desc: string): string => {
+    return weatherObj.desc;
+  };
+
   return (
     <div className="container flex justify-center max-w-2xl mx-auto ">
       {info &&
