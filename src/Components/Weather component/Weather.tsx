@@ -16,6 +16,11 @@ export interface Forecast {
   main: {
     temp: number;
   };
+  weather: {
+    0: {
+      main: string;
+    };
+  };
 }
 
 const weatherObj = {
@@ -55,8 +60,9 @@ export function Weather({ info }: WeatherDataProps) {
           .map((x) => (
             <div className="flex flex-col rounded shadow-xl outline outline-1 outline-gray-200 px-8 py-4 transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-105">
               <div className=" w-16 h-16 flex self-center">
-                <img className="" src="" alt="" />
+                <img className="" src={getIcon(x.weather[0].main)} alt="" />
               </div>
+
               <div className="">
                 <p className="text-gray-500">{getDay(x.dt)}</p>
                 <p className="">Temp: {x.main.temp} </p>

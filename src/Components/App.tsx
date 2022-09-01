@@ -35,10 +35,6 @@ function App() {
     setUserLocation(input);
   };
 
-  // if (!data) {
-  //   return <p>Loading..</p>;
-  // }
-
   return (
     <div className="container flex flex-col mx-auto min-h-screen justify-center ">
       <SearchBar className="searchbar" setLocation={setLocation} />
