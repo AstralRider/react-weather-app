@@ -9,7 +9,7 @@ export interface WeatherData {
   list: Forecast[];
 }
 
-export interface Forecast {
+interface Forecast {
   temp: number;
   dt_txt: string;
   dt: number;
@@ -18,7 +18,7 @@ export interface Forecast {
   };
   weather: {
     0: {
-      main: string;
+      main: keyof typeof weatherObj;
     };
   };
 }
