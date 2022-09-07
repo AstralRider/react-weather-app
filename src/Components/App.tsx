@@ -7,6 +7,7 @@ import {
   WeatherDataProps,
 } from "./Weather component/Weather";
 import "./App.css";
+import { Loader } from "./Loader";
 
 function App() {
   const [userLocation, setUserLocation] = useState<string | null>(null);
@@ -44,6 +45,7 @@ function App() {
   return (
     <div className="container flex flex-col mx-auto min-h-screen justify-center ">
       {badFetch && <p>Hmm... check your spelling and try again!</p>}
+      <Loader className="" />
       <SearchBar className="searchbar" setLocation={setLocation} />
       <Weather info={data} />
     </div>
