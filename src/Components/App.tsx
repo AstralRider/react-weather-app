@@ -50,8 +50,12 @@ function App() {
 
   return (
     <div className="container flex flex-col mx-auto min-h-screen justify-center ">
-      {badFetch && <p>Hmm... check your spelling and try again!</p>}
       <SearchBar className="searchbar" setLocation={setLocation} />
+      {badFetch && (
+        <p className="flex mx-auto justify-center">
+          Hmm... check your spelling and try again!
+        </p>
+      )}
       {loading && !badFetch ? <Loader /> : <Weather info={data} />}
     </div>
   );
