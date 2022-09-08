@@ -1,12 +1,8 @@
 import React from "react";
 
-interface ILoader {
-  className: string;
-}
-
-export function Loader(className: ILoader) {
+export function Loader() {
   return (
-    <div className="">
+    <div className="flex mx-auto justify-center">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

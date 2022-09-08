@@ -11,8 +11,9 @@ import { Loader } from "./Loader";
 
 function App() {
   const [userLocation, setUserLocation] = useState<string | null>(null);
-  const [data, setData] = useState<WeatherData>();
+  const [data, setData] = useState<WeatherData | null>();
   const [badFetch, setBadFetch] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const baseURL = "https://api.openweathermap.org/data/2.5/forecast?q=";
   const apiKey = "&appid=6078affb6cb911d495ce820cdc4b8eeb&units=metric";
@@ -20,6 +21,7 @@ function App() {
   useEffect(() => {
     const getData = async () => {
       if (userLocation) {
+        setLoading(true);
         try {
           const response = await fetch(`${baseURL}${userLocation}${apiKey}`);
           if (!response.ok) {
@@ -27,15 +29,19 @@ function App() {
           }
           const jsonResponse = await response.json();
           setBadFetch(false);
+
           setData(jsonResponse);
         } catch (error: any) {
           if (error.message.includes("404")) {
             setBadFetch(true);
+            setData(null);
           }
+        } finally {
+          setLoading(false);
         }
       }
     };
-    (async () => await getData())();
+    getData();
   }, [userLocation]);
 
   const setLocation = (input: string) => {
@@ -45,9 +51,8 @@ function App() {
   return (
     <div className="container flex flex-col mx-auto min-h-screen justify-center ">
       {badFetch && <p>Hmm... check your spelling and try again!</p>}
-      <Loader className="" />
       <SearchBar className="searchbar" setLocation={setLocation} />
-      <Weather info={data} />
+      {loading && !badFetch ? <Loader /> : <Weather info={data} />}
     </div>
   );
 }

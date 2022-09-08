@@ -1,7 +1,7 @@
 import React from "react";
 
 export interface WeatherDataProps {
-  info?: WeatherData;
+  info?: WeatherData | null;
 }
 
 export interface WeatherData {
