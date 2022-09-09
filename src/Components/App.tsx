@@ -22,13 +22,13 @@ function App() {
     const getData = async () => {
       if (userLocation) {
         setLoading(true);
+        setBadFetch(false);
         try {
           const response = await fetch(`${baseURL}${userLocation}${apiKey}`);
           if (!response.ok) {
             throw new Error(`HTTP error: ${response.status}`);
           }
           const jsonResponse = await response.json();
-          setBadFetch(false);
 
           setData(jsonResponse);
         } catch (error: any) {
