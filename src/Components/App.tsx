@@ -1,11 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { SearchBar } from "./Form Component/SearchBar";
-import {
-  Weather,
-  WeatherData,
-  WeatherDataProps,
-} from "./Weather component/Weather";
+import { Weather, WeatherData } from "./Weather component/Weather";
 import "./App.css";
 import { Loader } from "./Loader";
 
@@ -41,6 +37,7 @@ function App() {
         }
       }
     };
+
     getData();
   }, [userLocation]);
 

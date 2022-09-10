@@ -23,7 +23,7 @@ export function SearchBar({ setLocation }: Props) {
     <div className="relative flex justify-center max-h-96 mb-20">
       <form
         onSubmit={handleSubmit}
-        className="container max-h-40 flex justify-center "
+        className="container space-x-2 max-h-40 flex justify-center "
       >
         <input
           className="outline outline-2 outline-gray-300 rounded-md w-80 h-10 min-w-min text-3xl px-2 text-gray-500"
@@ -32,6 +32,7 @@ export function SearchBar({ setLocation }: Props) {
           value={search}
           placeholder="Enter a city"
         />
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
