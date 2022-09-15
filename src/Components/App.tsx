@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { SearchBar } from "./Form Component/SearchBar";
 import { Weather, WeatherData } from "./Weather component/Weather";
 import "./App.css";
@@ -14,19 +14,28 @@ function App() {
   const baseURL = "https://api.openweathermap.org/data/2.5/forecast?q=";
   const apiKey = "&appid=6078affb6cb911d495ce820cdc4b8eeb&units=metric";
 
+  const controllerRef = useRef<AbortController | null>();
+
   useEffect(() => {
     const getData = async () => {
+      if (controllerRef.current) {
+        controllerRef.current.abort();
+      }
       if (userLocation) {
         setLoading(true);
         setBadFetch(false);
+        const controller = new AbortController();
+        controllerRef.current = controller;
         try {
-          const response = await fetch(`${baseURL}${userLocation}${apiKey}`);
+          const response = await fetch(`${baseURL}${userLocation}${apiKey}`, {
+            signal: controllerRef.current?.signal,
+          });
           if (!response.ok) {
             throw new Error(`HTTP error: ${response.status}`);
           }
           const jsonResponse = await response.json();
-
           setData(jsonResponse);
+          controllerRef.current = null;
         } catch (error: any) {
           if (error.message.includes("404")) {
             setBadFetch(true);
@@ -46,14 +55,18 @@ function App() {
   };
 
   return (
-    <div className="container flex flex-col mx-auto min-h-screen justify-center ">
-      <SearchBar className="searchbar" setLocation={setLocation} />
-      {badFetch && (
-        <p className="flex mx-auto justify-center">
-          Hmm... check your spelling and try again!
-        </p>
-      )}
-      {loading && !badFetch ? <Loader /> : <Weather info={data} />}
+    <div className="container relative flex flex-col mx-auto min-h-screen justify-center ">
+      <div className="flex justify-center content-center">
+        <SearchBar className="searchbar" setLocation={setLocation} />
+      </div>
+      <div className="flex">
+        {badFetch && (
+          <p className="flex mx-auto py-5 justify-center">
+            Hmm... check your spelling and try again!
+          </p>
+        )}
+        {loading && !badFetch ? <Loader /> : <Weather info={data} />}
+      </div>
     </div>
   );
 }
