@@ -14,17 +14,21 @@ function App() {
   const baseURL = "https://api.openweathermap.org/data/2.5/forecast?q=";
   const apiKey = "&appid=6078affb6cb911d495ce820cdc4b8eeb&units=metric";
 
+  //create controller ref
   const controllerRef = useRef<AbortController | null>();
 
   useEffect(() => {
     const getData = async () => {
+      //if controllerRef.current doesn't equal null, abort request
       if (controllerRef.current) {
         controllerRef.current.abort();
       }
       if (userLocation) {
         setLoading(true);
         setBadFetch(false);
+        //create new abort controller
         const controller = new AbortController();
+        //set controllerRef.current (useRef obj) to equal controller
         controllerRef.current = controller;
         try {
           const response = await fetch(`${baseURL}${userLocation}${apiKey}`, {
@@ -35,6 +39,7 @@ function App() {
           }
           const jsonResponse = await response.json();
           setData(jsonResponse);
+          //If data retrieval was successful, set controllerRef.current to null.
           controllerRef.current = null;
         } catch (error: any) {
           if (error.message.includes("404")) {
