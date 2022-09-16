@@ -54,21 +54,22 @@ export function Weather({ info }: WeatherDataProps) {
 
   return (
     <div className="container flex justify-center max-w-2xl mx-auto ">
-      {info &&
-        info.list
-          .filter((x) => x.dt_txt.slice(11, 19) === "09:00:00")
-          .map((x) => (
-            <div className="flex flex-col rounded shadow-xl outline outline-1 outline-gray-200 px-8 py-4 transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-105 mx-1">
-              <div className=" w-16 h-16 flex self-center">
-                <img className="" src={getIcon(x.weather[0].main)} alt="" />
-              </div>
-
-              <div className="">
-                <p className="text-gray-500">{getDay(x.dt)}</p>
-                <p className="">Temp: {x.main.temp} </p>
-              </div>
+      {info?.list
+        .filter((x) => x.dt_txt.slice(11, 19) === "09:00:00")
+        .map((x) => (
+          <div className="flex flex-col rounded shadow-xl outline outline-1 outline-gray-200 px-8 py-4 transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-105 mx-1">
+            <div className=" w-16 h-16 flex self-center">
+              <img className="" src={getIcon(x.weather[0].main)} alt="" />
             </div>
-          ))}
+
+            <div className="flex flex-col">
+              <p className="text-gray-500">{getDay(x.dt)}</p>
+              <p className="text-gray-700 self-center">
+                {Math.round(x.main.temp)}℃{" "}
+              </p>
+            </div>
+          </div>
+        ))}
     </div>
   );
 }
