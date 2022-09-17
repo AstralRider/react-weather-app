@@ -52,10 +52,6 @@ export function Weather({ info }: WeatherDataProps) {
     return weatherObj[desc];
   };
 
-  const toFahrenheit = (celsius: number) => {
-    return celsius * 1800 + 32;
-  };
-
   return (
     <div className="container flex justify-center max-w-2xl mx-auto ">
       {info?.list
