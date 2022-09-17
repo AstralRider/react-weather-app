@@ -12,7 +12,7 @@ function App() {
   const [loading, setLoading] = useState(false);
 
   const baseURL = "https://api.openweathermap.org/data/2.5/forecast?q=";
-  const apiKey = "&appid=6078affb6cb911d495ce820cdc4b8eeb&units=metric";
+  const apiKey = `&appid=${process.env.REACT_APP_WEATHER_API_KEY}=metric`;
 
   //create controller ref
   const controllerRef = useRef<AbortController | null>();
