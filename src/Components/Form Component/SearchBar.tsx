@@ -26,7 +26,7 @@ export function SearchBar({ setLocation }: Props) {
         className="container space-x-3 max-h-40 flex justify-center items-center "
       >
         <input
-          className="outline outline-2 outline-gray-300 rounded-md w-80 h-10 min-w-min text-3xl px-2 text-gray-500 "
+          className="outline outline-2 outline-gray-300 rounded-md h-10 text-xl px-2 text-gray-500 sm:text-3xl"
           type="text"
           onChange={handleChange}
           value={search}

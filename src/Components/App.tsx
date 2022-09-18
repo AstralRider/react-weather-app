@@ -60,7 +60,10 @@ function App() {
   };
 
   return (
-    <div className="container relative flex flex-col mx-auto min-h-screen justify-center ">
+    <div
+      className="container relative flex flex-col mx-auto min-h-screen 
+    sm:justify-center "
+    >
       <div className="flex justify-center content-center">
         <SearchBar className="searchbar" setLocation={setLocation} />
       </div>
